@@ -5,11 +5,11 @@ const fs = require('fs');
 const express = require('express');
 const app = express();
 
-const PORT = 3000;
+const PORT = 4000;
 
 const options = {
-    key: fs.readFileSync('./certs/server-key.pem'),
-    cert: fs.readFileSync('./certs/server-cert.pem'),
+    key: fs.readFileSync('../certs/server-key.pem'),
+    cert: fs.readFileSync('../certs/server-cert.pem'),
     requestCert: false,
     rejectUnauthorized: true
 };
