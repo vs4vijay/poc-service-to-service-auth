@@ -1,0 +1,12 @@
+{
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "name": "student-service",
+  "version": "1.0.0",
+  "description": "A Microservice to Check Auth between API to API",
+  "main": "index.js",
+  "repository": "https://github.com/vs4vijay/poc-api-to-api-auth",
+  "author": "Vijay Soni",
+  "license": "MIT"
+}
