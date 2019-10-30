@@ -5,18 +5,23 @@ const fs = require('fs');
 const express = require('express');
 const app = express();
 
-const PORT = 4000;
-
-const options = {
-    key: fs.readFileSync('../certs/server-key.pem'),
-    cert: fs.readFileSync('../certs/server-cert.pem'),
-    requestCert: false,
-    rejectUnauthorized: true
+const CONFIG = {
+    port: process.env.PORT || 4000,
+    cert: process.env.SSL_CERT || fs.readFileSync('../ca1/server-cert.pem'),
+    key: process.env.SSL_KEY || fs.readFileSync('../ca1/server-key.pem'),
+    ca: [ process.env.SSL_CA_CERT || fs.readFileSync('../ca2/ca-cert.pem') ]
 };
 
+const options = {
+    cert: CONFIG['cert'],
+    key: CONFIG['key'],
+    ca: CONFIG['ca'],
+    requestCert: true, // Enables the Client Certification
+    rejectUnauthorized: true // false, in case of self-signed certificate
+};
 
-const server = https.createServer(options, app).listen(PORT, () => {
-    console.log(`Aplication running on port ${PORT} with HTTPS`)
+const server = https.createServer(options, app).listen(CONFIG['port'], () => {
+    console.log(`Application running on port ${CONFIG['port']} with HTTPS`)
 });
 
 app.get('/', (req, res) => { 
