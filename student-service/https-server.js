@@ -15,8 +15,8 @@ const CONFIG = {
 const options = {
     cert: CONFIG['cert'],
     key: CONFIG['key'],
-    ca: CONFIG['ca'],
-    requestCert: true, // Enables the Client Certification
+    ca: CONFIG['ca'], // required in case of self-signed certificate
+    requestCert: true, // enables the Client Certification
     rejectUnauthorized: true // false, in case of self-signed certificate (requestCert should be false too)
 };
 
